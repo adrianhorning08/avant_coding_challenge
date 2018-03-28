@@ -11,15 +11,3 @@
 * Keep track of charges (e.g. card swipes)
 * Keep track of payments
 * Provide the outstanding balance for any given day (such as "10 days after account opening")
-
-write a couple of tests for it
-create in ruby so you can interact with it on the command line
-How to simulate the days that pass? (I guess it just needs to calculate it. It doesn't
-need to simulate the days past)
-
-create a CreditCard Class
-methods ->
-initialize
-charge_to_card(amount)
-payment(amount)
-outstanding_balance(days_after_opening)
