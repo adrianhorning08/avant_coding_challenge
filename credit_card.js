@@ -8,10 +8,16 @@ class CreditCard {
     this.dayOfLastAction = 0;
   }
 
+  calcAndPushInterest(day) {
+    const interest = (this.balance * this.apr / 365 * (day - this.dayOfLastAction));
+    this.interestAccumulated.push(interest);
+  }
+
   chargeToCard(amount, day) {
     if (this.balance + amount > this.creditLimit) {
       throw "Maxed credit limit";
     } else {
+      this.calcAndPushInterest(day);
       this.balance += amount;
       this.dayOfLastAction = day;
     }
@@ -19,17 +25,15 @@ class CreditCard {
   }
 
   payment(amount, day) {
-    const interest = (this.balance * this.apr / 365 * (day - this.dayOfLastAction));
-    this.interestAccumulated.push(interest);
-    this.blance -= amount;
+    this.calcAndPushInterest(day);
+    this.balance -= amount;
     this.dayOfLastAction = day;
     return `Your balance is $${this.balance.toFixed(2)}`;
   }
 
   outstandingBalance(day) {
     if (day >= 30) {
-      const interest = (this.balance * this.apr / 365 * (day - this.dayOfLastAction));
-      this.interestAccumulated.push(interest);
+      this.calcAndPushInterest(day);
       this.balance += this.interestAccumulated.reduce((a,b) => a + b);
       return `Your balance is $${this.balance.toFixed(2)}`;
     } else {
