@@ -1,1 +1,25 @@
-# avant_coding_challenge
+# Avant Coding Challenge
+
+## Given a credit card that functions as follows:
+* Each card has an APR and Credit Limit.
+* Interest is calculated daily at the close of each day, but not applied.
+* Interest is applied to the balance at the close of each 30-day period (opening day excluded).
+  e.g., asking for the balance on days 28 and 29 will give the same results, but asking for balance on day 30 will give the balance + all interest accrued.
+
+## The software should be able to:
+* Create an account (e.g. opening a new credit card)
+* Keep track of charges (e.g. card swipes)
+* Keep track of payments
+* Provide the outstanding balance for any given day (such as "10 days after account opening")
+
+write a couple of tests for it
+create in ruby so you can interact with it on the command line
+How to simulate the days that pass? (I guess it just needs to calculate it. It doesn't
+need to simulate the days past)
+
+create a CreditCard Class
+methods ->
+initialize
+charge_to_card(amount)
+payment(amount)
+outstanding_balance(days_after_opening)
