@@ -1,0 +1,22 @@
+{
+  "name": "avant_coding_challenge",
+  "version": "1.0.0",
+  "description": "## Given a credit card that functions as follows: * Each card has an APR and Credit Limit. * Interest is calculated daily at the close of each day, but not applied. * Interest is applied to the balance at the close of each 30-day period (opening day excluded).   e.g., asking for the balance on days 28 and 29 will give the same results, but asking for balance on day 30 will give the balance + all interest accrued.",
+  "main": "credit_card.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianhorning08/avant_coding_challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrianhorning08/avant_coding_challenge/issues"
+  },
+  "homepage": "https://github.com/adrianhorning08/avant_coding_challenge#readme",
+  "dependencies": {
+    "mocha": "^5.0.5"
+  }
+}
