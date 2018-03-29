@@ -3,7 +3,7 @@ module.exports = class CreditCard {
     this.name = name;
     this.creditLimit = creditLimit;
     this.apr = apr / 100;
-    this.balance = 0;
+    this.outstandingBalance = 0;
     this.interestAccumulated = [];
     this.dayOfLastAction = 0;
   }
@@ -11,7 +11,7 @@ module.exports = class CreditCard {
   calculateBalance(day) {
     if ((day - (day % 10)) % 30 === 0) {
       this.calcAndPushInterest(day);
-      this.balance += this.interestAccumulated.reduce((a,b) => a + b);
+      this.outstandingBalance += this.interestAccumulated.reduce((a,b) => a + b);
       this.interestAccumulated = [];
     } else {
       this.calcAndPushInterest(day);
@@ -20,31 +20,31 @@ module.exports = class CreditCard {
   }
 
   calcAndPushInterest(day) {
-    const interest = (this.balance * this.apr / 365 * (day - this.dayOfLastAction));
+    const interest = (this.outstandingBalance * this.apr / 365 * (day - this.dayOfLastAction));
     this.interestAccumulated.push(interest);
   }
 
   printBalance() {
-    return `Your balance is $${this.balance.toFixed(2)}`;
+    return `Your balance is $${this.outstandingBalance.toFixed(2)}`;
   }
 
   chargeToCard(amount, day) {
-    if (this.balance + amount > this.creditLimit) {
+    if (this.outstandingBalance + amount > this.creditLimit) {
       throw "Maxed credit limit";
     } else {
       this.calculateBalance(day);
-      this.balance += amount;
+      this.outstandingBalance += amount;
     }
     return this.printBalance();
   }
 
   payment(amount, day) {
     this.calculateBalance(day);
-    this.balance -= amount;
+    this.outstandingBalance -= amount;
     return this.printBalance();
   }
 
-  outstandingBalance(day) {
+  balance(day) {
     this.calculateBalance(day);
     return this.printBalance();
   }

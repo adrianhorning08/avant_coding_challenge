@@ -25,10 +25,27 @@ describe("CreditCard", function () {
   });
   describe("#chargeToCard", function () {
     it("should increase outstanding balance owed when card is charged", function () {
-      assert.strictEqual(harry.chargeToCard(500,0), 'Your balance is $500.00');
-      assert.strictEqual(sally.chargeToCard(500,0), 'Your balance is $500.00');
+      assert.equal(harry.chargeToCard(500,0), 'Your balance is $500.00');
+      assert.equal(sally.chargeToCard(500,0), 'Your balance is $500.00');
     });
   });
-});
+  describe("#outstandingBalance", function () {
+    it("should output correct outstanding balance for Avant test scenario 1", function () {
+      harry.chargeToCard(500,0);
+      assert.equal(harry.balance(30), 'Your balance is $514.38');
+    });
+    it("should output correct outstanding balance for Avant test scenario 2", function () {
+      sally.chargeToCard(500,0);
+      sally.payment(200,15);
+      sally.chargeToCard(100,25);
+      assert.equal(sally.balance(30), 'Your balance is $411.99');
+    });
+    it("should work past 30 days", function () {
+      sally.chargeToCard(500,0);
+      sally.payment(200,15);
+      sally.chargeToCard(100,25);
+      assert.equal(sally.balance(60), 'Your balance is $423.49');
+    });
+  });
 
-// sally.chargeToCard(100,25);
+});

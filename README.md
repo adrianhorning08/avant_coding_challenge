@@ -1,4 +1,5 @@
 # Avant Coding Challenge
+run `npm test` to run mocha tests
 
 ## Given a credit card that functions as follows:
 * Each card has an APR and Credit Limit.
