@@ -1,4 +1,4 @@
-class CreditCard {
+module.exports = class CreditCard {
   constructor(name, creditLimit, apr) {
     this.name = name;
     this.creditLimit = creditLimit;
@@ -48,12 +48,4 @@ class CreditCard {
     this.calculateBalance(day);
     return this.printBalance();
   }
-}
-
-// const sally = new CreditCard('sally', 1000, 35);
-// sally.chargeToCard(500,0)
-// sally.payment(200,15)
-// sally.chargeToCard(100,25)
-// sally.outstandingBalance(30);
-// sally.outstandingBalance(45);
-// console.log(sally.outstandingBalance(60));
+};
